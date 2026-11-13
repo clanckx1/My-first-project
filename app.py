@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
-
+from streamlit_autorefresh import st_autorefresh
+st_autorefresh(interval=30 * 1000, key="auto_refresh")
 st.set_page_config(page_title="CLANCKX LIVE", layout="wide")
 st.title("CLANCKX LIVE - 10 COINS 🔥")
 st.write("Nigeria, Ukraine, USA, UK - Everywhere")
