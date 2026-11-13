@@ -25,15 +25,17 @@ try:
     ids = ",".join(coins.values())
     url = f"https://api.coingecko.com/api/v3/simple/price?ids={ids}&vs_currencies=usd&include_24hr_change=true"
     data = requests.get(url, timeout=10).json()
+
     for symbol, cid in coins.items():
         price = data.get(cid, {}).get("usd", 0)
-        change = data.get(cid, {}).get("usd_24h_change", 0)if price < 0.01:
-        if price < 0.01:        
-        price_text = f"${price:,.8f}"
+        change = data.get(cid, {}).get("usd_24h_change", 0)
+
+        if price < 0.01:
+            price_text = f"${price:.8f}"
         else:
-            price_text = f"${price:,.4f}"
-        st.write(f"**{symbol}: {price_text}** | 24h: {change:.2f}%")
-    st.success("Prices loaded ✅")
+            price_text = f"${price:.2f}"
+
+        st.write(f"**{symbol}**: {price_text}  ({change:.2f}%)")
+
 except Exception as e:
-    st.error("Price API busy. Press Refresh Prices.")
-    st.write(f"Error: {e}")
+    st.error(f"Error: {e}")
