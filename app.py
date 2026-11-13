@@ -40,4 +40,4 @@ try:
       arrow = "▲" if change >= 0 else "▼"
       msg = f"{symbol}: {price_text} {arrow} {change:.2f}%"
       st.markdown(f"<span style='color:{color}'><b>{msg}</b></span>", unsafe_allow_html=True)
-    
+
