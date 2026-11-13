@@ -36,7 +36,7 @@ try:
         else:
             price_text = f"${price:.2f}"
 
-      colour =  "green" if change >= 0 else "red"
+      color =  "green" if change >= 0 else "red"
       arrow = "▲" if change >= 0 else "▼"
       msg = f"{symbol}: {price_text} {arrow} {change:.2f}%"
       st.markdown(f"<span style='color:{color}'><b>{msg}</b></span>", unsafe_allow_html=True)
