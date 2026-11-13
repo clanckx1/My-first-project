@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 from streamlit_autorefresh import st_autorefresh
-st_autorefresh(interval=30 * 1000, key="auto_refresh")
+st_autorefresh(interval=5 * 1000, key="auto_refresh")
 st.set_page_config(page_title="CLANCKX LIVE", layout="wide")
 st.title("CLANCKX LIVE - 10 COINS 🔥")
 st.write("Nigeria, Ukraine, USA, UK - Everywhere")
@@ -36,8 +36,8 @@ try:
         else:
             price_text = f"${price:.2f}"
 
-        st.write(f"**{symbol}**: {price_text}  ({change:.2f}%)")
-
-except Exception as e:
-    st.error(f"Error: {e}")
+      colour =  "green" if change >= 0 else "red"
+      arrow = "▲" if change >= 0 else "▼"
+      msg = f"{symbol}: {price_text} {arrow} {change:.2f}%"
+      st.markdown(f"<span style='color:{color}'><b>{msg}</b></span>", unsafe_allow_html=True)
     
