@@ -27,8 +27,12 @@ try:
     data = requests.get(url, timeout=10).json()
     for symbol, cid in coins.items():
         price = data.get(cid, {}).get("usd", 0)
-        change = data.get(cid, {}).get("usd_24h_change", 0)
-        st.write(f"**{symbol}: ${price:,.4f}** | 24h: {change:.2f}%")
+        change = data.get(cid, {}).get("usd_24h_change", 0)if price < 0.01:
+        if price < 0.01:        
+        price_text = f"${price:,.8f}"
+        else:
+            price_text = f"${price:,.4f}"
+        st.write(f"**{symbol}: {price_text}** | 24h: {change:.2f}%")
     st.success("Prices loaded ✅")
 except Exception as e:
     st.error("Price API busy. Press Refresh Prices.")
